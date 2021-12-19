@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mảng 1 chiều</title>
+</head>
+<body>
+<p><strong>Cho mảng số nguyên:</strong></p>
+<p id="arrayContainer"></p>
+<hr>
+<p>1. Nhập vào 1 số và kiểm tra xem số đó có trong mảng hay không nếu có thì hiển thị vị trí của số đó trong mảng</p>
+<input type="button" value="Chạy" onclick="bai1()"/>
+<p id="result1"></p>
+<hr>
+<p>2. Tính tích các phần tử có trong mảng</p>
+<input type="button" value="Chạy" onclick="bai2()"/>
+<p id="result2"></p>
+<hr>
+<p>3.	Nhập vào 1 số và đếm xem số đó xuất hiện bao nhiêu lần trong mảng.</p>
+<input type="button" value="Chạy" onclick="bai3()"/>
+<p id="result3"></p>
+<hr>
+<script>
+    let arr = [5, 4, 8, 7, 3, 2, 8, 4, 3, 4, 9, 2, 5, 1, 6, 5, 6, 3, 3, 8];
+    document.getElementById('arrayContainer').innerHTML = arr;
+
+    function bai1() {
+        let number = parseInt(prompt('Nhập một số:'));
+        let foundIndex = arr.indexOf(number);
+        let message = 'Số bạn nhập: ' + number + '<br>';
+        message += (foundIndex == -1) ? 'Số này không có trong mảng.' : 'Số này tìm thấy ở vị trí thứ ' + (foundIndex + 1)+'.';
+        document.getElementById('result1').innerHTML = message;
+    }
+    function bai2(){
+        let product = 1;
+        for (let i = 0; i< arr.length; i++){
+            product *= arr[i];
+        }
+        let message = 'Tích các số trong mảng: '+product + '.';
+        document.getElementById('result2').innerHTML = message;
+    }
+    function bai3(){
+        let number = parseInt(prompt('Nhập một số:'));
+        let count = 0;
+        for (let i = 0; i< arr.length; i++){
+            if (number == arr[i]){
+                count++;
+            }
+        }
+        let message = 'Số bạn nhập: ' + number + '<br>';
+        message += 'Số này xuất hiện '+ count + ' lần.'
+        document.getElementById('result3').innerHTML = message;
+    }
+
+
+</script>
+</body>
+</html>

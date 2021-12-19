@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mảng 2 chiều</title>
+</head>
+<body>
+
+<p><strong>Cho mảng 2 chiều:</strong></p>
+<p id="arrayContainer"></p>
+<hr>
+<p>1.	Tính tổng các phần tử trong mảng 2 chiều</p>
+<input type="button" value="Chạy" onclick="bai1()"/>
+<p id="result1"></p>
+<hr>
+<p>2.	Tính tổng các phần tử trong 1 hàng và hiển thị tổng của từng hàng</p>
+<input type="button" value="Chạy" onclick="bai2()"/>
+<p id="result2"></p>
+<hr>
+<p>3.	Tính tổng các phần tử của 1 cột và hiển thị tổng của từng cột</p>
+<input type="button" value="Chạy" onclick="bai3()"/>
+<p id="result3"></p>
+<hr>
+<p>4.	Tìm giá trị lớn nhất của mỗi cột.</p>
+<input type="button" value="Chạy" onclick="bai4()"/>
+<p id="result4"></p>
+<hr>
+
+
+<script>
+    let arr = [ [9,8,15,1],
+                [4,7,9,9,10],
+                [10,8,2,6,9,12],
+                [0,6,11,9,5,7,9,4]
+    ];
+    let arrText = '';
+    for (let i = 0; i< arr.length; i++){
+        arrText += arr[i] + '<br>';
+    }
+    document.getElementById('arrayContainer').innerHTML = arrText;
+
+    function bai1(){
+        let sum = 0;
+        for (row = 0; row< arr.length; row++){
+            for (col = 0; col<arr[row].length; col++){
+                sum += arr[row][col];
+            }
+        }
+        let message = 'Tổng các số trong dãy: '+sum;
+        document.getElementById('result1').innerHTML = message;
+    }
+    function bai2(){
+        let message = '';
+        for (row = 0; row< arr.length; row++){
+            let sum = 0;
+            for (col = 0; col<arr[row].length; col++){
+                sum += arr[row][col];
+            }
+            message += 'Tổng các phần tử trong hàng ' + row + ' là: '+ sum + '<br>';
+        }
+        document.getElementById('result2').innerHTML = message;
+    }
+    function bai3(){
+        let message = '';
+        let sumCol = [];
+        for (row = 0; row< arr.length; row++){
+            for (col = 0; col<arr[row].length; col++){
+                if (typeof (sumCol[col]) == 'undefined' ) {
+                    sumCol[col] = 0;
+                }
+                sumCol[col] += arr[row][col];
+            }
+        }
+        for (let i in sumCol) {
+            message += 'Tổng của cột thứ '+ i+' là '+ sumCol[i]+'<br>';
+        }
+
+        document.getElementById('result3').innerHTML = message;
+    }
+    function bai4(){
+        let message = '';
+        let maxCol = [];
+        for (row = 0; row< arr.length; row++){
+            for (col = 0; col<arr[row].length; col++){
+                if (typeof (maxCol[col]) == 'undefined' ) {
+                    maxCol[col] = arr[row][col];
+                }
+                if (maxCol[col] < arr[row][col]){
+                    maxCol[col] = arr[row][col];
+                }
+            }
+        }
+        for (let i in maxCol) {
+            message += 'Giá trị lớn nhất trong cột '+ i+' là '+ maxCol[i]+'<br>';
+        }
+
+        document.getElementById('result4').innerHTML = message;
+    }
+
+
+</script>
+</body>
+</html>
